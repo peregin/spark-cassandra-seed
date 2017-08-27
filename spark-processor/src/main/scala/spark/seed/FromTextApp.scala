@@ -1,11 +1,10 @@
 package spark.seed
 
-import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.rdd.RDD
 import WordCount._
 
-
-object WordCountApp extends App {
+object FromTextApp extends App {
 
   val conf = new SparkConf()
     .setAppName("Word Count")
@@ -14,7 +13,13 @@ object WordCountApp extends App {
     .set("spark.driver.host", "localhost")
   val sc = new SparkContext(conf)
 
-  val rdd: RDD[String] = sc.textFile("spark-processor/src/test/resources/kipling.txt")
+  val text =
+    """
+      |The data is here.
+      |The bicycle is green.
+      |Green is cool.
+    """.stripMargin
+  val rdd: RDD[String] = sc.parallelize(List(text))
   wordCount(rdd)
   sc.stop()
 }
