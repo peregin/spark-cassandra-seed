@@ -1,1 +1,1 @@
-# spark-cassandra-seed
+# Spark Cassandra Template Project
