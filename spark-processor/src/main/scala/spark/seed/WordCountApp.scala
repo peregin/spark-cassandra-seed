@@ -13,7 +13,7 @@ object WordCountApp extends App {
     .set("spark.driver.host", "localhost")
   val sc = new SparkContext(conf)
 
-  val rdd: RDD[String] = sc.textFile("spark-processor/src/test/resources/book/kipling.txt")
+  val rdd: RDD[String] = sc.textFile("spark-processor/src/test/resources/kipling.txt")
   println(s"lines: ${rdd.count()}")
 
   val input = rdd.map(line => line.toLowerCase)
